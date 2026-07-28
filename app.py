@@ -10,6 +10,13 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 def hello_world():
     return 'Hello, World from Lauren in 3308'
 
+@app.route("/debug_env")
+def debug_env():
+    val = os.environ.get("DATABASE_URL")
+    if val is None:
+        return "DATABASE_URL is not set"
+    return f"DATABASE_URL starts with: {val[:15]}..."
+
 @app.route("/db_test")
 def db_test():
     conn = None
